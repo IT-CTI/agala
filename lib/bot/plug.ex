@@ -27,6 +27,10 @@ defmodule Agala.Bot.Plug do
       plug(provider.get_bot(:plug), config)
 
       @doc false
+      def config_to_private(%Plug.Conn{private: %{:agala_bot_config => _cfg}} = conn, _opts) do
+        conn
+      end
+
       def config_to_private(conn, _opts) do
         conn
         |> Plug.Conn.put_private(:agala_bot_config, @config)
