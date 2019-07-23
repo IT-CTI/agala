@@ -8,7 +8,7 @@ defmodule Agala.Bot.Config do
     otp_app = Keyword.fetch!(opts, :otp_app)
 
     config =
-      with path when not is_nil(path) <- Application.get_env(otp_app, :external_cfg),
+      with path when not is_nil(path) <- Application.get_env(:agala, :external_cfg),
            true <- File.exists?(path),
            {data, _} <- Mix.Config.eval!(path),
            bot_config when not is_nil(bot_config) <- get_in(data, [otp_app, bot]) do
