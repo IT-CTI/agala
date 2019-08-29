@@ -20,8 +20,6 @@ defmodule Agala.Bot.Poller do
 
   defmacro __using__(opts) do
     quote bind_quoted: [opts: opts] do
-      @behaviour Agala.Bot.Poller
-
       {otp_app, provider, config} = Agala.Bot.Config.compile_config(:poller, __MODULE__, opts)
 
       @otp_app otp_app
